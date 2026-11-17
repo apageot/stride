@@ -41,8 +41,8 @@ Crée un dépôt **public** nommé `stride`, puis mets-y tous les fichiers de ce
 ### 2. Connexion Garmin (sur ton Mac)
 ```bash
 python3 --version                     # il faut 3.12 ou plus (sinon : brew install python@3.12)
-pip3 install garminconnect curl_cffi
-python3 scripts/connexion_garmin.py
+curl -LsSf https://astral.sh/uv/install.sh | sh
+~/.local/bin/uv run --python 3.12 --with garminconnect --with curl_cffi scripts/connexion_garmin.py
 ```
 Le script te demande ton email, ton mot de passe et, si tu l'as activé, le code de double authentification. Il affiche ensuite un bloc de texte : copie-le en entier. Ton mot de passe n'est enregistré nulle part.
 

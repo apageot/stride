@@ -1,12 +1,20 @@
 """À lancer UNE fois sur ton ordi pour connecter Garmin.
 
-    python3 scripts/connexion_garmin.py
+Le plus simple (installe tout seul le bon Python, 3.12+) :
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ~/.local/bin/uv run --python 3.12 --with garminconnect --with curl_cffi scripts/connexion_garmin.py
 
 Te demande ton email + mot de passe Garmin (et le code de double authentification si tu l'as),
 puis affiche le contenu à coller dans le secret GitHub GARMIN_TOKENS_JSON.
 Ton mot de passe n'est stocké nulle part.
 """
+import sys
 from getpass import getpass
+
+if sys.version_info < (3, 12):
+    sys.exit("Il faut Python 3.12 ou plus. Lance plutôt :\n"
+             "  curl -LsSf https://astral.sh/uv/install.sh | sh\n"
+             "  ~/.local/bin/uv run --python 3.12 --with garminconnect --with curl_cffi scripts/connexion_garmin.py")
 from pathlib import Path
 
 from garminconnect import Garmin
