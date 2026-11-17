@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-17T14:01",
+ "genere_le": "2026-11-17T14:28",
  "aujourdhui": "2026-11-17",
  "objectif": {
   "temps": "45:00",
@@ -383,7 +383,7 @@
  ],
  "date_course": null,
  "garmin": {
-  "derniere_synchro": "2026-11-17T15:01+01:00",
+  "derniere_synchro": "2026-11-17T15:28+01:00",
   "envoyees": []
  },
  "erreur": "Connexion Garmin impossible : Username and password are required"
