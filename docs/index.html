@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="techy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0E12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Stride">
+<title>Stride</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="techy.css">
+<script>document.documentElement.setAttribute("data-theme", "techy");</script>
+</head>
+<body>
+<div class="tx ticker" aria-hidden="true"><div><span>CONSISTENCY ALWAYS BEATS MOTIVATION ✕ 10 KM &lt; 45:00 ✕ RUN THE PLAN ✕ NO FINISH LINE ✕ </span><span>CONSISTENCY ALWAYS BEATS MOTIVATION ✕ 10 KM &lt; 45:00 ✕ RUN THE PLAN ✕ NO FINISH LINE ✕ </span></div></div>
+<div class="tx vtext" aria-hidden="true">STRIDE ✕ 10 KM &lt; 45:00 ✕ FOCUS ON THE GLOW ✕ 2026</div>
+<div class="tx ghost" aria-hidden="true"><svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" fill="#d9d7cf">
+  <circle cx="232" cy="88" r="40"/>
+  <path d="M205 135 C240 128 268 140 272 175 L268 275 C262 300 230 310 205 300 C185 290 180 260 186 230 Z"/>
+  <path d="M262 160 L330 215 L318 232 L250 190 Z"/><path d="M200 165 L140 230 L158 246 L215 195 Z"/>
+  <path d="M215 290 L300 400 L280 520 L305 525 L330 395 L255 285 Z"/>
+  <path d="M205 295 L150 380 L70 420 L82 442 L170 405 L232 310 Z"/>
+</svg></div>
+<div class="tx scrim" aria-hidden="true"></div>
+<div id="app" class="app">
+  <header class="top">
+    <span class="mark">Stride<em id="demoTag"></em><i class="tx barcode"></i></span>
+    <div class="topr"><button class="sync" id="syncBtn" aria-label="Synchroniser"><i class="dot"></i><span id="syncTxt"></span></button></div>
+  </header>
+  <section id="level"></section>
+  <section id="week"></section>
+  <div class="tx pixband" id="pixband"></div>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet-bg" data-close></div>
+  <article class="sheet-card" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Fermer">×</button>
+    <div id="detail"></div>
+  </article>
+</div>
+
+<div class="sheet" id="plan" aria-hidden="true">
+  <div class="sheet-bg" data-close></div>
+  <article class="sheet-card" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Fermer">×</button>
+    <div id="planBody"></div>
+  </article>
+</div>
+
+<div class="sheet" id="mode" aria-hidden="true">
+  <div class="sheet-bg" data-close></div>
+  <article class="sheet-card small" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Fermer">×</button>
+    <h2 class="sttl">Mode</h2>
+    <div class="modes">
+      <button class="mopt" data-m="objectif"><b>Objectif seul</b><span>Pas de date. Le plan avance par cycles, test 5 km toutes les 8 semaines.</span></button>
+      <button class="mopt" data-m="course"><b>Course</b><span>Une date de 10 km : les 2 dernières semaines deviennent un affûtage.</span></button>
+    </div>
+    <label class="mdate">Date de la course<input id="raceDate" type="date"></label>
+    <button class="btn" id="saveMode">Valider</button>
+  </article>
+</div>
+
+<div class="sheet" id="settings" aria-hidden="true">
+  <div class="sheet-bg" data-close></div>
+  <article class="sheet-card small" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Fermer">×</button>
+    <h2 class="sttl">Connexion à GitHub</h2>
+    <p class="muted">Pour envoyer une séance sur ta montre depuis l'app, colle une fois un jeton GitHub (accès « Actions : lecture et écriture » sur ce dépôt). Il reste sur ce téléphone.</p>
+    <label>Dépôt<input id="repo" placeholder="pseudo/stride" autocomplete="off"></label>
+    <label>Jeton<input id="token" type="password" placeholder="github_pat_…" autocomplete="off"></label>
+    <button class="btn" id="saveSettings">Enregistrer</button>
+  </article>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

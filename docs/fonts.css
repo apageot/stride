@@ -1,0 +1,5 @@
+/* Polices embarquées (fichiers dans /fonts, issus de Fontsource — licences libres OFL) */
+@font-face { font-family: "Geist"; src: url("fonts/geist.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Archivo"; src: url("fonts/archivo.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jbmono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jbmono-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }

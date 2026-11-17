@@ -1,0 +1,19 @@
+{
+  "prenom": "Antoine",
+  "ville": "Toulouse",
+  "objectif": {
+    "distance_km": 10,
+    "temps": "45:00"
+  },
+  "records": {
+    "5km": "22:30",
+    "10km": "49:21"
+  },
+  "debut": "2026-11-16",
+  "date_course": null,
+  "fc_max": null,
+  "lieu": {
+    "lat": 43.6047,
+    "lon": 1.4442
+  }
+}
