@@ -152,6 +152,11 @@ def main():
     try:
         g = connect()
         cache = fetch(g, debut - timedelta(days=7), today, cache)
+        # FC max : on regarde une fois tes 6 derniers mois (simples résumés, pas de détails)
+        if "fc_hist" not in cache:
+            old = g.get_activities_by_date((debut - timedelta(days=183)).isoformat(), debut.isoformat())
+            cache["fc_hist"] = sorted(int(a["maxHR"]) for a in old
+                                      if a.get("maxHR") and "running" in str((a.get("activityType") or {}).get("typeKey", "")))
     except Exception as e:
         erreur = f"Connexion Garmin impossible : {e}"
         print(erreur, file=sys.stderr)
@@ -168,6 +173,9 @@ def main():
         sid, val = r.split("=", 1)
         if val in ("facile", "ok", "dur"):
             state.setdefault("ressentis", {})[sid] = val
+    hist = cache.get("fc_hist") or []
+    if not cfg.get("fc_max") and len(hist) >= 3 and hist[-2] >= 150:
+        cfg["fc_max"] = hist[-2]  # 2e plus haute valeur : on ignore un éventuel pic aberrant du capteur
     data, state = build(cfg, state, cache["activities"], cache["laps"], today, cache.get("series", {}))
     if g and not erreur:
         try:
