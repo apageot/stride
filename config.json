@@ -11,7 +11,7 @@
   },
   "debut": "2026-11-16",
   "date_course": null,
-  "fc_max": null,
+  "fc_max": 205,
   "lieu": {
     "lat": 43.6047,
     "lon": 1.4442
