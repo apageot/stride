@@ -1,3 +1,9 @@
 {
- "garmin": {}
+ "garmin": {
+  "2026-11-16-petite": {
+   "workout_id": 1765659182,
+   "hash": "6b68348a91ed",
+   "semaine": "2026-11-16"
+  }
+ }
 }
