@@ -338,26 +338,6 @@
     const cols = ["var(--vma)", "var(--spe)", "var(--seuil)", "var(--ef)"];
     return `<span class="burst">${[...Array(12)].map((_, i) => `<i style="--a:${i * 30}deg;--c:${cols[i % 4]}"></i>`).join("")}</span>`;
   }
-  // ---------- carte : tuiles sombres (en ligne) ou plan stylisé (démo / hors ligne) ----------
-  const merc = (la, lo, z) => {
-    const n = 256 * 2 ** z, r = (la * Math.PI) / 180;
-    return [((lo + 180) / 360) * n, ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * n];
-  };
-  function demoCity(P, W, H) {
-    // plan stylisé de Toulouse : la Garonne, le canal du Midi, un maillage de rues
-    let seed = 11; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-    const river = [[43.570, 1.447], [43.582, 1.441], [43.590, 1.4382], [43.5955, 1.4362], [43.6015, 1.4336], [43.6068, 1.4312], [43.6120, 1.4290], [43.6200, 1.4255], [43.632, 1.420]];
-    const canal = [[43.586, 1.470], [43.591, 1.456], [43.597, 1.450], [43.604, 1.452], [43.611, 1.449], [43.617, 1.441], [43.620, 1.432]];
-    const path = (pts) => pts.map(([la, lo], i) => { const [x, y] = P(la, lo); return `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`; }).join(" ");
-    let streets = "";
-    for (let i = 0; i < 70; i++) {
-      const la = 43.580 + rnd() * 0.04, lo = 1.415 + rnd() * 0.045, ang = (rnd() < .5 ? 0.35 : 1.9) + (rnd() - .5) * .3, len = 0.002 + rnd() * 0.006;
-      const [x1, y1] = P(la, lo), [x2, y2] = P(la + Math.sin(ang) * len, lo + Math.cos(ang) * len * 1.4);
-      streets += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;
-    }
-    return `<svg class="city" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><g class="st">${streets}</g>
-      <path class="cn" d="${path(canal)}"/><path class="rv" d="${path(river)}"/></svg>`;
-  }
   // ---------- parcours sur une photo de la ville ----------
   // ordre : img/ville.jpg (ta photo) → image principale Wikipédia de la ville → fond sombre
   let cityImg = null;
@@ -368,31 +348,12 @@
       .then((r) => r.json()).then((j) => tryImg((j.originalimage || j.thumbnail).source)))
       .then((src) => (cityImg = src)).catch(() => (cityImg = ""));
   }
-  function mapBlock(trace, a) {
-    const W = 340, H = 425, padX = 70, padT = 90, padB = 130;
-    const p0 = trace.map(([la, lo]) => merc(la, lo, 0));
-    const xs = p0.map((p) => p[0]), ys = p0.map((p) => p[1]);
-    const x0 = Math.min(...xs), y0 = Math.min(...ys), dx = Math.max(...xs) - x0 || 1e-9, dy = Math.max(...ys) - y0 || 1e-9;
-    const k = Math.min((W - 2 * padX) / dx, (H - padT - padB) / dy);
-    const ox = (W - dx * k) / 2, oy = padT + (H - padT - padB - dy * k) / 2;
-    const pt = p0.map(([x, y]) => [ox + (x - x0) * k, oy + (y - y0) * k]);
-    const d = pt.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" ");
-    const s0 = pt[0], s1 = pt[pt.length - 1], r = a.realise;
-    const cx = pt.reduce((u, p) => u + p[0], 0) / pt.length;
-    const away = s0[0] < cx ? -1 : 1; // étiquette du côté extérieur de la boucle
-    const loop = Math.hypot(s1[0] - s0[0], s1[1] - s0[1]) < 18;
-    const fx = loop ? s0[0] + away * 14 : s1[0], fy = loop ? s0[1] - 30 : s1[1] - 18;
-    const dnum = a.date_realisee || "";
+  function mapBlock(a) {
+    const r = a.realise;
     loadCity().then((src) => { const el = document.querySelector(".cityph"); if (el && src) { el.style.backgroundImage = `url("${src}")`; el.classList.add("on"); } });
     return `<figure class="mapw">
       <div class="cityph"></div><div class="mapveil"></div>
-      <svg class="maptr" viewBox="0 0 ${W} ${H}">
-        <path class="rt-sh" d="${d}"/><path class="rt" d="${d}"/>
-        <circle cx="${s0[0]}" cy="${s0[1]}" r="7" class="rs-ring"/><circle cx="${s0[0]}" cy="${s0[1]}" r="2.6" class="rs"/>
-        <text x="${s0[0] + away * 14}" y="${s0[1] + 4}" text-anchor="${away < 0 ? "end" : "start"}" class="rl">DÉPART</text>
-        <g transform="translate(${fx - (away < 0 ? 13.5 : 0)} ${fy})" class="flag">${[0, 1, 2].map((j) => [0, 1, 2].map((i) => ((i + j) % 2 ? "" : `<rect x="${i * 4.5}" y="${j * 4.5}" width="4.5" height="4.5"/>`)).join("")).join("")}</g>
-      </svg>
-      <figcaption class="maptop"><b>${esc(data.ville || "")}</b><span>${r.heure ? esc(r.heure) : ""}</span></figcaption>
+      <figcaption class="maptop"><b>${esc(data.ville || "")}</b></figcaption>
       <div class="mapstats">
         <div><small>Distance</small><b>${r.distance_km.toFixed(2).replace(".", ",")}<em>km</em></b></div>
         <div><small>Allure</small><b>${esc(r.allure)}<em>/km</em></b></div>
@@ -520,9 +481,9 @@
       <div class="verdict"><span class="vic v-${a.verdict}">${VICON[a.verdict]}</span>${a.verdict === "reussie" ? burst() : ""}${esc(a.titre)}</div>
       <p class="say">${esc(a.resume)}</p>
       ${feelBlock(s)}
-      ${a.serie && a.serie.trace && a.serie.trace.length > 2 ? mapBlock(a.serie.trace, a) : ""}
+      ${mapBlock(a)}
       ${compare(s)}${head}${reps}${serieBlock(a)}
-      ${a.serie && a.serie.trace && a.serie.trace.length > 2 ? "" : `<div class="stats">
+      ${"" && `<div class="stats">
         <div><small>Distance</small><b>${km(r.distance_km)} km</b></div>
         <div><small>Durée</small><b>${esc(r.duree)}</b></div>
         <div><small>Allure</small><b>${esc(r.allure ?? "–")}</b></div>
@@ -542,7 +503,7 @@
     $("#detail").innerHTML = `<div class="detail">
       <div class="dh" style="${theme(s)}">${pattern(s)}
         ${s.type === "allure" && s.sous_type !== "ef" ? `<span class="tag dtag">Séance clé</span>` : ""}
-        <div class="dt">${s.date_realisee ? `${data.ville ? esc(data.ville) + " · " : ""}${esc(fmt(s.date_realisee, { weekday: "long", day: "numeric", month: "long" }))}${s.analyse && s.analyse.realise.heure ? " · " + s.analyse.realise.heure : ""}` : s.date ? esc(fmt(s.date, { weekday: "long", day: "numeric", month: "long" })) : s.optionnelle ? "Bonus · facultatif" : `Semaine du ${esc(fmt(s.semaine_debut, { day: "numeric", month: "long" }))}`}</div>
+        <div class="dt">${s.date_realisee ? `${data.ville ? esc(data.ville) + " · " : ""}${esc(fmt(s.date_realisee, { weekday: "long", day: "numeric", month: "long" }))}` : s.date ? esc(fmt(s.date, { weekday: "long", day: "numeric", month: "long" })) : s.optionnelle ? "Bonus · facultatif" : `Semaine du ${esc(fmt(s.semaine_debut, { day: "numeric", month: "long" }))}`}</div>
         <div class="kick">${esc(k)}</div><h2 class="big" data-t="${esc(t)}">${esc(t)}</h2>
         <div class="dkpi">
           <div><small>Durée</small><b>${Math.round(s.duree_estimee_s / 60)}<em> min</em></b></div>

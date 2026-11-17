@@ -73,7 +73,7 @@ def fake_series(laps):
             pts.append([round(a1 + (a2 - a1) * t + random.uniform(-.00004, .00004), 5),
                         round(o1 + (o2 - o1) * t + random.uniform(-.00004, .00004), 5)])
     alt = [round(52 + 9 * math.sin(i / 17) + 4 * math.sin(i / 5) + random.uniform(-.6, .6), 1) for i in range(n)]
-    return {"trace": pts, "vitesse": speed, "altitude": alt, "fc": hr}
+    return {"vitesse": speed, "altitude": alt, "fc": hr}
 
 
 def main():
@@ -95,7 +95,7 @@ def main():
             aid += 1
             dist = sum(l["distance"] for l in laps)
             dur = sum(l["duration"] for l in laps)
-            acts.append({"activityId": aid, "activityName": "Course à pied", "startTimeLocal": f"{d} 18:30:00",
+            acts.append({"activityId": aid, "activityName": "Course à pied", "startTimeLocal": f"{d} 00:00:00",
                          "distance": dist, "duration": dur, "averageSpeed": dist / dur,
                          "averageHR": sum(l["averageHR"] * l["duration"] for l in laps) / dur,
                          "maxHR": max(l["averageHR"] for l in laps) + (12 if s["type"] == "allure" else 6),

@@ -37,7 +37,6 @@ def summary(act):
         "duree_s": round(t),
         "allure": fmt_pace(t / d) if d else None,
         "fc": round(act["averageHR"]) if act.get("averageHR") else None,
-        "heure": (act.get("startTimeLocal") or "")[11:16] or None,
     }
 
 

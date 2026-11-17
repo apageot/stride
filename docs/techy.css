@@ -455,3 +455,6 @@ html[data-theme="techy"] {
 .gap + .modechip { display: block; }
 [data-theme="techy"] .sheet .btn { background: #fff !important; color: #0b0e12 !important; font: 600 16px "Geist", sans-serif; }
 .modechip { border: 0 !important; padding: 0 !important; background: none !important; }
+
+/* carte ville sans tracé : format plus bas */
+.mapw { aspect-ratio: 16 / 11 !important; }

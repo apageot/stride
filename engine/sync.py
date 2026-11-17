@@ -55,33 +55,10 @@ def _down(xs, n):
     return [xs[int(i * step)] for i in range(n)]
 
 
-ZONE_PRIVEE_M = 400  # rayon masqué autour du départ et de l'arrivée (comme la zone de confidentialité Strava)
-
-
-def _dist_m(a, b):
-    import math
-    dy = (a[0] - b[0]) * 111_320
-    dx = (a[1] - b[1]) * 111_320 * math.cos(math.radians(a[0]))
-    return math.hypot(dx, dy)
-
-
-def privacy(pts, r=ZONE_PRIVEE_M):
-    """Retire les points à moins de r mètres du départ ou de l'arrivée : on ne devine pas où tu habites."""
-    if len(pts) < 3:
-        return pts
-    s, e = pts[0], pts[-1]
-    kept = [p for p in pts if _dist_m(p, s) > r and _dist_m(p, e) > r]
-    return kept if len(kept) > 2 else []
-
-
 def parse_details(d: dict) -> dict:
     """Parcours GPS + courbes vitesse / altitude / cardio, allégés pour l'app."""
     out = {}
-    poly = ((d or {}).get("geoPolylineDTO") or {}).get("polyline") or []
-    pts = [[round(p["lat"], 5), round(p["lon"], 5)] for p in poly if p.get("lat") is not None and p.get("lon") is not None]
-    pts = privacy(pts)
-    if len(pts) > 2:
-        out["trace"] = _down(pts, 160)
+    # tracé GPS volontairement ignoré : rien de géolocalisé n'est publié
     idx = {m.get("key"): m.get("metricsIndex") for m in (d or {}).get("metricDescriptors", [])}
     rows = [r.get("metrics") or [] for r in (d or {}).get("activityDetailMetrics", [])]
     for key, name, nd in (("directSpeed", "vitesse", 2), ("directElevation", "altitude", 1), ("directHeartRate", "fc", 0)):
@@ -101,10 +78,12 @@ def fetch(g, since: date, today: date, cache: dict):
         if not is_run(a) or str(a["activityId"]) in known:
             continue
         slim = {k: a.get(k) for k in ACT_KEYS}
+        # vie privée : on ne garde que le jour, pas l'heure (le dépôt est public)
+        slim["startTimeLocal"] = (slim.get("startTimeLocal") or a.get("startTimeGMT") or "")[:10] + " 00:00:00"
         laps = g.get_activity_laps(a["activityId"]).get("lapDTOs", [])
         cache["laps"][str(a["activityId"])] = [{k: l.get(k) for k in LAP_KEYS} for l in laps]
         try:
-            cache.setdefault("series", {})[str(a["activityId"])] = parse_details(g.get_activity_details(a["activityId"], maxchart=600, maxpoly=600))
+            cache.setdefault("series", {})[str(a["activityId"])] = parse_details(g.get_activity_details(a["activityId"], maxchart=600, maxpoly=0))
         except Exception as e:
             print(f"  (détails GPS indisponibles : {e})")
         cache["activities"].append(slim)
