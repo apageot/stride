@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-17T14:28",
+ "genere_le": "2026-11-17T14:38",
  "aujourdhui": "2026-11-17",
  "objectif": {
   "temps": "45:00",
@@ -13,7 +13,7 @@
   "prediction_s": 2800,
   "depart_s": 2800
  },
- "fc_max": null,
+ "fc_max": 201,
  "prenom": "Antoine",
  "ville": "Toulouse",
  "lieu": {
@@ -26,7 +26,11 @@
     391,
     372
    ],
-   "texte": "6:12–6:31"
+   "texte": "6:12–6:31",
+   "fc": [
+    131,
+    155
+   ]
   },
   "seuil": {
    "s": [
@@ -67,17 +71,18 @@
      "titre": "Footing",
      "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
      "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
-     "reussite": "Allure entre 6:12–6:31/km. Tu dois pouvoir parler en phrases complètes.",
+     "reussite": "Cardio entre 131 et 155 bpm. Tu dois pouvoir parler en phrases complètes.",
      "etapes": [
       {
        "k": "continu",
        "duree_s": 2100,
        "zone": "ef",
-       "allure": [
-        391,
-        372
-       ],
-       "label": "35 min en endurance"
+       "allure": null,
+       "label": "35 min en endurance",
+       "fc": [
+        131,
+        155
+       ]
       }
      ],
      "id": "2026-11-16-petite",
@@ -154,17 +159,18 @@
      "titre": "Sortie longue",
      "travail": "Endurance : pouvoir tenir 10 km à fond sans faiblir sur la fin.",
      "pourquoi": "Fin de semaine : on allonge un peu à chaque fois, toujours à allure facile.",
-     "reussite": "Régulier du début à la fin, allure entre 6:12–6:31/km.",
+     "reussite": "Régulier du début à la fin, cardio entre 131 et 155 bpm.",
      "etapes": [
       {
        "k": "continu",
        "duree_s": 3600,
        "zone": "ef",
-       "allure": [
-        391,
-        372
-       ],
-       "label": "60 min en endurance"
+       "allure": null,
+       "label": "60 min en endurance",
+       "fc": [
+        131,
+        155
+       ]
       }
      ],
      "id": "2026-11-16-longue",
@@ -184,17 +190,18 @@
      "titre": "Footing bonus",
      "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
      "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
-     "reussite": "Allure entre 6:12–6:31/km. Tu dois pouvoir parler en phrases complètes.",
+     "reussite": "Cardio entre 131 et 155 bpm. Tu dois pouvoir parler en phrases complètes.",
      "etapes": [
       {
        "k": "continu",
        "duree_s": 1800,
        "zone": "ef",
-       "allure": [
-        391,
-        372
-       ],
-       "label": "30 min en endurance"
+       "allure": null,
+       "label": "30 min en endurance",
+       "fc": [
+        131,
+        155
+       ]
       }
      ],
      "id": "2026-11-16-bonus",
@@ -228,17 +235,18 @@
      "titre": "Footing",
      "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
      "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
-     "reussite": "Allure entre 6:12–6:31/km. Tu dois pouvoir parler en phrases complètes.",
+     "reussite": "Cardio entre 131 et 155 bpm. Tu dois pouvoir parler en phrases complètes.",
      "etapes": [
       {
        "k": "continu",
        "duree_s": 2100,
        "zone": "ef",
-       "allure": [
-        391,
-        372
-       ],
-       "label": "35 min en endurance"
+       "allure": null,
+       "label": "35 min en endurance",
+       "fc": [
+        131,
+        155
+       ]
       }
      ],
      "id": "2026-11-23-petite",
@@ -315,17 +323,18 @@
      "titre": "Sortie longue",
      "travail": "Endurance : pouvoir tenir 10 km à fond sans faiblir sur la fin.",
      "pourquoi": "Fin de semaine : on allonge un peu à chaque fois, toujours à allure facile.",
-     "reussite": "Régulier du début à la fin, allure entre 6:12–6:31/km.",
+     "reussite": "Régulier du début à la fin, cardio entre 131 et 155 bpm.",
      "etapes": [
       {
        "k": "continu",
        "duree_s": 3600,
        "zone": "ef",
-       "allure": [
-        391,
-        372
-       ],
-       "label": "60 min en endurance"
+       "allure": null,
+       "label": "60 min en endurance",
+       "fc": [
+        131,
+        155
+       ]
       }
      ],
      "id": "2026-11-23-longue",
@@ -345,17 +354,18 @@
      "titre": "Footing bonus",
      "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
      "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
-     "reussite": "Allure entre 6:12–6:31/km. Tu dois pouvoir parler en phrases complètes.",
+     "reussite": "Cardio entre 131 et 155 bpm. Tu dois pouvoir parler en phrases complètes.",
      "etapes": [
       {
        "k": "continu",
        "duree_s": 1800,
        "zone": "ef",
-       "allure": [
-        391,
-        372
-       ],
-       "label": "30 min en endurance"
+       "allure": null,
+       "label": "30 min en endurance",
+       "fc": [
+        131,
+        155
+       ]
       }
      ],
      "id": "2026-11-23-bonus",
@@ -383,8 +393,7 @@
  ],
  "date_course": null,
  "garmin": {
-  "derniere_synchro": "2026-11-17T15:28+01:00",
+  "derniere_synchro": "2026-11-17T15:38+01:00",
   "envoyees": []
- },
- "erreur": "Connexion Garmin impossible : Username and password are required"
+ }
 }
