@@ -36,16 +36,42 @@ def save(p, obj):
     p.write_text(json.dumps(obj, ensure_ascii=False, indent=1))
 
 
+def _clean(raw: str) -> str:
+    """Garde uniquement l'objet JSON (au cas où une ligne du Terminal a été collée avec)."""
+    i, j = raw.find("{"), raw.rfind("}")
+    return raw[i:j + 1] if i >= 0 and j > i else ""
+
+
 def connect():
+    """Connexion avec les jetons : d'abord ceux gardés de la dernière synchro, sinon ceux du secret."""
     from garminconnect import Garmin
     TOKENS_DIR.mkdir(parents=True, exist_ok=True)
     tok = TOKENS_DIR / "garmin_tokens.json"
-    if not tok.exists() and os.getenv("GARMIN_TOKENS_JSON"):
-        tok.write_text(os.environ["GARMIN_TOKENS_JSON"])
-        tok.chmod(0o600)
-    g = Garmin(os.getenv("GARMIN_EMAIL"), os.getenv("GARMIN_PASSWORD"))
-    g.login(str(TOKENS_DIR))
-    return g
+    essais = []
+    if tok.exists():
+        essais.append(("jetons gardés", _clean(tok.read_text())))
+    secret = _clean(os.getenv("GARMIN_TOKENS_JSON", ""))
+    if secret:
+        essais.append(("secret GARMIN_TOKENS_JSON", secret))
+    if not essais:
+        raise RuntimeError("le secret GARMIN_TOKENS_JSON est absent ou vide sur GitHub")
+    erreurs = []
+    for nom, raw in essais:
+        try:
+            data = json.loads(raw)
+            if not data.get("di_token") or not data.get("di_refresh_token"):
+                raise ValueError("il manque di_token / di_refresh_token")
+        except Exception as e:
+            erreurs.append(f"{nom} illisible ({e})")
+            continue
+        try:
+            g = Garmin()
+            g.login(raw)  # jetons fournis directement : pas d'identifiants nécessaires
+            print(f"Connecté à Garmin via {nom}")
+            return g
+        except Exception as e:
+            erreurs.append(f"{nom} refusés par Garmin ({e})")
+    raise RuntimeError(" ; ".join(erreurs) + ". Relance scripts/connexion_garmin.py et recolle la clé dans le secret.")
 
 
 def _down(xs, n):
