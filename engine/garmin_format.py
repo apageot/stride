@@ -25,9 +25,11 @@ def _step(s, order):
         st["endCondition"] = {"conditionTypeId": 2, "conditionTypeKey": "time"}
         st["endConditionValue"] = float(s["duree_s"])
     if s.get("fc"):
-        st["targetType"] = {"workoutTargetTypeId": 4, "workoutTargetTypeKey": "heart.rate.zone"}
-        st["targetValueOne"] = float(s["fc"][0])
-        st["targetValueTwo"] = float(s["fc"][1])
+        # Pas d'objectif cardio sur la montre : le cœur met plusieurs minutes à monter,
+        # et la montre sonnerait « trop bas » dès le départ. La fourchette reste écrite sur l'étape.
+        st["targetType"] = {"workoutTargetTypeId": 1, "workoutTargetTypeKey": "no.target"}
+        fc = f"Cardio {s['fc'][0]}-{s['fc'][1]} bpm"
+        st["description"] = f"{st['description']} · {fc}" if st["description"] else fc
     elif s.get("allure"):
         slow, fast = s["allure"]
         st["targetType"] = {"workoutTargetTypeId": 6, "workoutTargetTypeKey": "pace.zone"}
