@@ -24,12 +24,14 @@ def _step(s, order):
     else:
         st["endCondition"] = {"conditionTypeId": 2, "conditionTypeKey": "time"}
         st["endConditionValue"] = float(s["duree_s"])
-    if s.get("fc"):
-        # Pas d'objectif cardio sur la montre : le cœur met plusieurs minutes à monter,
-        # et la montre sonnerait « trop bas » dès le départ. La fourchette reste écrite sur l'étape.
+    if s.get("fc") and s.get("mise_en_route"):
+        # 5 premières minutes : pas d'objectif, le temps que le cœur monte
         st["targetType"] = {"workoutTargetTypeId": 1, "workoutTargetTypeKey": "no.target"}
-        fc = f"Cardio {s['fc'][0]}-{s['fc'][1]} bpm"
-        st["description"] = f"{st['description']} · {fc}" if st["description"] else fc
+        st["description"] = f"Mise en route · ensuite cardio {s['fc'][0]}-{s['fc'][1]} bpm"
+    elif s.get("fc"):
+        st["targetType"] = {"workoutTargetTypeId": 4, "workoutTargetTypeKey": "heart.rate.zone"}
+        st["targetValueOne"] = float(s["fc"][0])
+        st["targetValueTwo"] = float(s["fc"][1])
     elif s.get("allure"):
         slow, fast = s["allure"]
         st["targetType"] = {"workoutTargetTypeId": 6, "workoutTargetTypeKey": "pace.zone"}
@@ -40,9 +42,24 @@ def _step(s, order):
     return st
 
 
-def _steps(steps, counter):
+MISE_EN_ROUTE_S = 300  # alerte cardio seulement après 5 min
+
+
+def _split_warmup(steps):
+    """Coupe une étape d'endurance au cardio en 5 min sans objectif + le reste avec la fourchette."""
     out = []
     for s in steps:
+        if s.get("k") == "continu" and s.get("fc") and s.get("duree_s", 0) >= 2 * MISE_EN_ROUTE_S:
+            out.append(dict(s, duree_s=MISE_EN_ROUTE_S, mise_en_route=True))
+            out.append(dict(s, duree_s=s["duree_s"] - MISE_EN_ROUTE_S))
+        else:
+            out.append(s)
+    return out
+
+
+def _steps(steps, counter):
+    out = []
+    for s in _split_warmup(steps):
         counter[0] += 1
         if s["k"] == "repeat":
             order = counter[0]
