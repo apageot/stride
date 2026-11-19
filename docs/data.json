@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-19T15:21",
+ "genere_le": "2026-11-19T18:13",
  "aujourdhui": "2026-11-19",
  "objectif": {
   "temps": "45:00",
@@ -865,7 +865,7 @@
  ],
  "date_course": null,
  "garmin": {
-  "derniere_synchro": "2026-11-19T16:21+01:00",
+  "derniere_synchro": "2026-11-19T19:13+01:00",
   "envoyees": [
    "2026-11-16-petite"
   ]
