@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-20T17:16",
+ "genere_le": "2026-11-20T17:31",
  "aujourdhui": "2026-11-20",
  "objectif": {
   "temps": "45:00",
@@ -1140,7 +1140,8 @@
         167.0
        ]
       }
-     }
+     },
+     "ressenti": "ok"
     },
     {
      "sous_type": "ef",
@@ -1416,7 +1417,7 @@
  ],
  "date_course": null,
  "garmin": {
-  "derniere_synchro": "2026-11-20T18:16+01:00",
+  "derniere_synchro": "2026-11-20T18:31+01:00",
   "envoyees": [
    "2026-11-16-allure",
    "2026-11-16-petite"
