@@ -1,6 +1,6 @@
 {
- "genere_le": "2026-11-22T20:46",
- "aujourdhui": "2026-11-22",
+ "genere_le": "2026-11-23T10:48",
+ "aujourdhui": "2026-11-23",
  "objectif": {
   "temps": "45:00",
   "distance_km": 10,
@@ -1172,7 +1172,7 @@
      "allegee": false,
      "duree_estimee_s": 3600,
      "distance_estimee_km": 9.4,
-     "statut": "a_faire"
+     "statut": "manquee"
     },
     {
      "sous_type": "ef",
@@ -1391,9 +1391,198 @@
     }
    ],
    "libres": []
+  },
+  {
+   "num": 3,
+   "cycle": 1,
+   "sem_cycle": 3,
+   "debut": "2026-11-30",
+   "fin": "2026-12-06",
+   "label": "Allure 10 km",
+   "allegee": false,
+   "km_prevus": 26.7,
+   "km_faits": 0,
+   "seances": [
+    {
+     "sous_type": "ef",
+     "titre": "Footing + lignes droites",
+     "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression. Les lignes droites entretiennent une foulée rapide sans fatiguer.",
+     "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
+     "reussite": "Cardio entre 133 et 158 bpm. Tu dois pouvoir parler en phrases complètes.",
+     "etapes": [
+      {
+       "k": "continu",
+       "duree_s": 2400,
+       "zone": "ef",
+       "allure": null,
+       "label": "40 min en endurance",
+       "fc": [
+        133,
+        158
+       ]
+      },
+      {
+       "k": "repeat",
+       "fois": 6,
+       "etapes": [
+        {
+         "k": "effort",
+         "duree_s": 20,
+         "zone": "libre",
+         "allure": null,
+         "label": "20 s vite et relâché"
+        },
+        {
+         "k": "recup",
+         "duree_s": 40,
+         "zone": null,
+         "allure": null,
+         "label": "40 s trot"
+        }
+       ]
+      }
+     ],
+     "id": "2026-11-30-petite",
+     "type": "petite",
+     "optionnelle": false,
+     "semaine": 3,
+     "cycle": 1,
+     "sem_cycle": 3,
+     "semaine_debut": "2026-11-30",
+     "allegee": false,
+     "duree_estimee_s": 2760,
+     "distance_estimee_km": 7.2,
+     "statut": "a_faire"
+    },
+    {
+     "sous_type": "specifique",
+     "titre": "Allure 10 km · 5 × 1 km",
+     "travail": "Allure 10 km : on se rapproche cycle après cycle de l'allure objectif (4:30/km).",
+     "pourquoi": "Semaine 3 du cycle : on transforme la VMA et le seuil en vitesse de course.",
+     "reussite": "Fractions entre 4:32–4:38/km. Plus vite ne sert à rien, on cherche la précision.",
+     "etapes": [
+      {
+       "k": "echauffement",
+       "duree_s": 900,
+       "zone": "ef",
+       "allure": null,
+       "label": "15 min d'échauffement"
+      },
+      {
+       "k": "repeat",
+       "fois": 5,
+       "etapes": [
+        {
+         "k": "effort",
+         "distance_m": 1000,
+         "zone": "specifique",
+         "allure": [
+          278,
+          272
+         ],
+         "label": "1 km"
+        },
+        {
+         "k": "recup",
+         "duree_s": 90,
+         "zone": null,
+         "allure": null,
+         "label": "1:30 trot"
+        }
+       ]
+      },
+      {
+       "k": "retour",
+       "duree_s": 600,
+       "zone": "ef",
+       "allure": null,
+       "label": "10 min de retour au calme"
+      }
+     ],
+     "id": "2026-11-30-allure",
+     "type": "allure",
+     "optionnelle": false,
+     "semaine": 3,
+     "cycle": 1,
+     "sem_cycle": 3,
+     "semaine_debut": "2026-11-30",
+     "allegee": false,
+     "duree_estimee_s": 3325,
+     "distance_estimee_km": 10.0,
+     "statut": "a_faire"
+    },
+    {
+     "sous_type": "ef",
+     "titre": "Sortie longue",
+     "travail": "Endurance : pouvoir tenir 10 km à fond sans faiblir sur la fin.",
+     "pourquoi": "Fin de semaine : on allonge un peu à chaque fois, toujours à allure facile.",
+     "reussite": "Régulier du début à la fin, cardio entre 133 et 158 bpm.",
+     "etapes": [
+      {
+       "k": "continu",
+       "duree_s": 3600,
+       "zone": "ef",
+       "allure": null,
+       "label": "60 min en endurance",
+       "fc": [
+        133,
+        158
+       ]
+      }
+     ],
+     "id": "2026-11-30-longue",
+     "type": "longue",
+     "optionnelle": false,
+     "semaine": 3,
+     "cycle": 1,
+     "sem_cycle": 3,
+     "semaine_debut": "2026-11-30",
+     "allegee": false,
+     "duree_estimee_s": 3600,
+     "distance_estimee_km": 9.5,
+     "statut": "a_faire"
+    },
+    {
+     "sous_type": "ef",
+     "titre": "Footing bonus",
+     "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
+     "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
+     "reussite": "Cardio entre 133 et 158 bpm. Tu dois pouvoir parler en phrases complètes.",
+     "etapes": [
+      {
+       "k": "continu",
+       "duree_s": 1800,
+       "zone": "ef",
+       "allure": null,
+       "label": "30 min en endurance",
+       "fc": [
+        133,
+        158
+       ]
+      }
+     ],
+     "id": "2026-11-30-bonus",
+     "type": "bonus",
+     "optionnelle": true,
+     "semaine": 3,
+     "cycle": 1,
+     "sem_cycle": 3,
+     "semaine_debut": "2026-11-30",
+     "allegee": false,
+     "duree_estimee_s": 1800,
+     "distance_estimee_km": 4.8,
+     "statut": "facultative"
+    }
+   ],
+   "libres": []
   }
  ],
  "journal": [
+  {
+   "date": "2026-11-22",
+   "texte": "Sortie longue manquée : pas de rattrapage, on reprend normalement.",
+   "type": "hold"
+  },
   {
    "date": "2026-11-20",
    "texte": "Tes fractions montrent que tu progresses : niveau estimé à 46:09 sur 10 km, allures ajustées.",
@@ -1417,10 +1606,11 @@
  ],
  "date_course": null,
  "garmin": {
-  "derniere_synchro": "2026-11-22T21:46+01:00",
+  "derniere_synchro": "2026-11-23T11:48+01:00",
   "envoyees": [
    "2026-11-16-allure",
-   "2026-11-16-petite"
+   "2026-11-16-petite",
+   "2026-11-23-petite"
   ]
  }
 }

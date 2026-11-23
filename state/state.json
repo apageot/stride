@@ -9,10 +9,165 @@
    "workout_id": 1768050630,
    "hash": "3d3807d3d37f",
    "semaine": "2026-11-16"
+  },
+  "2026-11-23-petite": {
+   "workout_id": 1771606811,
+   "hash": "bbe056ed5431",
+   "semaine": "2026-11-23"
   }
  },
  "ressentis": {
   "2026-11-16-petite": "ok",
   "2026-11-16-allure": "ok"
+ },
+ "semaines": {
+  "2026-11-16": [
+   {
+    "id": "2026-11-16-petite",
+    "type": "petite",
+    "sous_type": "ef",
+    "titre": "Footing",
+    "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
+    "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
+    "reussite": "Cardio entre 133 et 158 bpm. Tu dois pouvoir parler en phrases complètes.",
+    "etapes": [
+     {
+      "k": "continu",
+      "duree_s": 2100,
+      "zone": "ef",
+      "allure": null,
+      "label": "35 min en endurance",
+      "fc": [
+       133,
+       158
+      ]
+     }
+    ],
+    "semaine": 1,
+    "cycle": 1,
+    "sem_cycle": 1,
+    "semaine_debut": "2026-11-16",
+    "allegee": false,
+    "optionnelle": false,
+    "duree_estimee_s": 2100,
+    "distance_estimee_km": 5.5
+   },
+   {
+    "id": "2026-11-16-allure",
+    "type": "allure",
+    "sous_type": "vma",
+    "titre": "VMA · 8 × 400 m",
+    "travail": "VMA : ta vitesse maximale en aérobie. Plus elle monte, plus l'allure 10 km devient facile.",
+    "pourquoi": "Semaine 1 du cycle : tu es frais, c'est le moment de la séance la plus intense.",
+    "reussite": "Chaque fraction entre 4:19–4:28/km, la dernière aussi rapide que la première.",
+    "etapes": [
+     {
+      "k": "echauffement",
+      "duree_s": 900,
+      "zone": "ef",
+      "allure": null,
+      "label": "15 min d'échauffement"
+     },
+     {
+      "k": "repeat",
+      "fois": 8,
+      "etapes": [
+       {
+        "k": "effort",
+        "distance_m": 400,
+        "zone": "vma",
+        "allure": [
+         268,
+         259
+        ],
+        "label": "400 m"
+       },
+       {
+        "k": "recup",
+        "duree_s": 90,
+        "zone": null,
+        "allure": null,
+        "label": "1:30 trot"
+       }
+      ]
+     },
+     {
+      "k": "retour",
+      "duree_s": 600,
+      "zone": "ef",
+      "allure": null,
+      "label": "10 min de retour au calme"
+     }
+    ],
+    "semaine": 1,
+    "cycle": 1,
+    "sem_cycle": 1,
+    "semaine_debut": "2026-11-16",
+    "allegee": false,
+    "optionnelle": false,
+    "duree_estimee_s": 3063,
+    "distance_estimee_km": 8.8
+   },
+   {
+    "id": "2026-11-16-longue",
+    "type": "longue",
+    "sous_type": "ef",
+    "titre": "Sortie longue",
+    "travail": "Endurance : pouvoir tenir 10 km à fond sans faiblir sur la fin.",
+    "pourquoi": "Fin de semaine : on allonge un peu à chaque fois, toujours à allure facile.",
+    "reussite": "Régulier du début à la fin, cardio entre 133 et 158 bpm.",
+    "etapes": [
+     {
+      "k": "continu",
+      "duree_s": 3600,
+      "zone": "ef",
+      "allure": null,
+      "label": "60 min en endurance",
+      "fc": [
+       133,
+       158
+      ]
+     }
+    ],
+    "semaine": 1,
+    "cycle": 1,
+    "sem_cycle": 1,
+    "semaine_debut": "2026-11-16",
+    "allegee": false,
+    "optionnelle": false,
+    "duree_estimee_s": 3600,
+    "distance_estimee_km": 9.4
+   },
+   {
+    "id": "2026-11-16-bonus",
+    "type": "bonus",
+    "sous_type": "ef",
+    "titre": "Footing bonus",
+    "travail": "Endurance fondamentale : le fond (cœur, capillaires, tendons). C'est là que se fait l'essentiel de la progression.",
+    "pourquoi": "Ajouter du volume facile entre les séances dures, et récupérer de la précédente.",
+    "reussite": "Cardio entre 133 et 158 bpm. Tu dois pouvoir parler en phrases complètes.",
+    "etapes": [
+     {
+      "k": "continu",
+      "duree_s": 1800,
+      "zone": "ef",
+      "allure": null,
+      "label": "30 min en endurance",
+      "fc": [
+       133,
+       158
+      ]
+     }
+    ],
+    "semaine": 1,
+    "cycle": 1,
+    "sem_cycle": 1,
+    "semaine_debut": "2026-11-16",
+    "allegee": false,
+    "optionnelle": true,
+    "duree_estimee_s": 1800,
+    "distance_estimee_km": 4.7
+   }
+  ]
  }
 }
