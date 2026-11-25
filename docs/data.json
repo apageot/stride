@@ -1,6 +1,6 @@
 {
- "genere_le": "2026-11-24T16:02",
- "aujourdhui": "2026-11-24",
+ "genere_le": "2026-11-25T01:29",
+ "aujourdhui": "2026-11-25",
  "objectif": {
   "temps": "45:00",
   "distance_km": 10,
@@ -2062,7 +2062,7 @@
  ],
  "date_course": null,
  "garmin": {
-  "derniere_synchro": "2026-11-24T17:02+01:00",
+  "derniere_synchro": "2026-11-25T02:29+01:00",
   "envoyees": [
    "2026-11-16-allure",
    "2026-11-16-petite",
